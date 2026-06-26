@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mente Conecta — Plataforma Práctica de Salud Mental</title>
+    <meta name="description" content="Plataforma interactiva orientada a la autogestión de la salud mental y la terapia cognitivo-conductual (TCC).">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <span class="brand-name">MenteConecta</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-tab="dashboard" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Inicio</span>
+                </button>
+                <button class="nav-btn" data-tab="botiquin" id="nav-botiquin">
+                    <i class="fa-solid fa-kit-medical"></i>
+                    <span>Botiquín Ayuda</span>
+                </button>
+                <button class="nav-btn" data-tab="biblioteca" id="nav-biblioteca">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Biblioteca</span>
+                </button>
+                <button class="nav-btn" data-tab="directorio" id="nav-directorio">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span>Directorio</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-user">
+                <div class="user-avatar">RS</div>
+                <div class="user-info">
+                    <span class="user-name">Ricardo S.</span>
+                    <span class="user-role">Paciente</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="app-main">
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="tab-content active">
+                <header class="section-header">
+                    <h1>Hola, Ricardo 👋</h1>
+                    <p class="section-subtitle">Tu bienestar es nuestra prioridad. ¿Cómo te sientes hoy?</p>
+                </header>
+                
+                <div class="dashboard-grid">
+                    <!-- Quick Check-in -->
+                    <div class="card glass checkin-card">
+                        <h3><i class="fa-solid fa-heart-pulse icon-accent"></i> Registro de Estado de Ánimo</h3>
+                        <div class="mood-selector">
+                            <button class="mood-btn" data-mood="calmo">
+                                <span class="mood-emoji">😌</span>
+                                <span class="mood-label">Calmo</span>
+                            </button>
+                            <button class="mood-btn" data-mood="feliz">
+                                <span class="mood-emoji">😊</span>
+                                <span class="mood-label">Feliz</span>
+                            </button>
+                            <button class="mood-btn" data-mood="ansioso">
+                                <span class="mood-emoji">😰</span>
+                                <span class="mood-label">Ansioso</span>
+                            </button>
+                            <button class="mood-btn" data-mood="triste">
+                                <span class="mood-emoji">😢</span>
+                                <span class="mood-label">Triste</span>
+                            </button>
+                            <button class="mood-btn" data-mood="cansado">
+                                <span class="mood-emoji">🥱</span>
+                                <span class="mood-label">Cansado</span>
+                            </button>
+                        </div>
+                        <div id="checkin-feedback" class="checkin-feedback hidden">
+                            <p id="feedback-text"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Card -->
+                    <div class="card glass progress-card">
+                        <h3><i class="fa-solid fa-square-check icon-accent"></i> Progreso de Hábitos</h3>
+                        <div class="progress-container">
+                            <div class="progress-ring-wrapper">
+                                <div class="progress-ring-percentage" id="habits-percent">0%</div>
+                            </div>
+                            <div class="progress-details">
+                                <p id="habits-count-text">0 de 5 completados hoy</p>
+                                <span class="progress-motivation">¡Sigue así, estás construyendo bienestar!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Action Card -->
+                    <div class="card glass action-card">
+                        <h3><i class="fa-solid fa-bolt icon-accent"></i> Ayuda Rápida</h3>
+                        <p>¿Sientes ansiedad o estrés agudo? Activa una respiración de caja guiada ahora mismo.</p>
+                        <button class="btn btn-primary" onclick="goToTab('botiquin', 'box-breathing')">
+                            Iniciar Respiración <i class="fa-solid fa-wind"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Dynamic Quote Card -->
+                    <div class="card glass quote-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p class="quote-text" id="daily-quote">"El cuidado personal no es egoísta, es simplemente el combustible que necesitas para seguir adelante."</p>
+                        <span class="quote-author">— Anónimo</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Botiquín Section -->
+            <section id="botiquin" class="tab-content">
+                <header class="section-header">
+                    <h1>Botiquín de Ayuda Inmediata</h1>
+                    <p class="section-subtitle">Técnicas cognitivo-conductuales interactivas para momentos de estrés o ansiedad.</p>
+                </header>
+                
+                <div class="sub-tab-navigation">
+                    <button class="sub-btn active" data-subtab="box-breathing">Respiración Caja (4-4-4-4)</button>
+                    <button class="sub-btn" data-subtab="grounding">Grounding (5-4-3-2-1)</button>
+                    <button class="sub-btn" data-subtab="habits">Micro-Hábitos TCC</button>
+                </div>
+                
+                <div class="sub-tab-content active" id="box-breathing">
+                    <div class="breathing-layout">
+                        <div class="breathing-card glass">
+                            <div class="breathing-animation-container">
+                                <div class="breathing-circle" id="breathing-circle">
+                                    <div class="breathing-inner-circle">
+                                        <span id="breathing-phase-text">Inhala</span>
+                                        <span id="breathing-timer">4s</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="breathing-controls">
+                                <button class="btn btn-success" id="btn-breathing-start">
+                                    Iniciar <i class="fa-solid fa-play"></i>
+                                </button>
+                                <button class="btn btn-danger hidden" id="btn-breathing-stop">
+                                    Detener <i class="fa-solid fa-stop"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="breathing-info glass">
+                            <h3>Técnica de Respiración Cuadrada</h3>
+                            <p>Esta técnica es utilizada por profesionales y fuerzas especiales para recuperar el control biológico bajo estrés severo.</p>
+                            <ol class="steps-list">
+                                <li><strong>Inhalar:</strong> Toma aire lentamente durante 4 segundos.</li>
+                                <li><strong>Mantener:</strong> Retén el aire en tus pulmones por 4 segundos.</li>
+                                <li><strong>Exhalar:</strong> Suelta el aire despacio durante 4 segundos.</li>
+                                <li><strong>Mantener vacío:</strong> Espera 4 segundos antes de volver a inhalar.</li>
+                            </ol>
+                            <div class="info-alert">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Realizar este ciclo durante 4 o 5 repeticiones reduce drásticamente el cortisol y activa el sistema parasimpático.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sub-tab-content" id="grounding">
+                    <div class="grounding-card glass">
+                        <h3>Técnica de Enraizamiento (5-4-3-2-1)</h3>
+                        <p>El grounding te ayuda a salir del bucle de pensamientos ansiosos reconectándote con el presente a través de tus sentidos.</p>
+                        
+                        <div class="grounding-wizard">
+                            <!-- Progress Bar -->
+                            <div class="grounding-progress">
+                                <div class="grounding-progress-bar" id="grounding-progress-bar"></div>
+                            </div>
+                            
+                            <!-- Step Contents -->
+                            <div class="grounding-step active" data-step="1">
+                                <h4><span class="step-num">5</span> Cosas que puedes VER a tu alrededor</h4>
+                                <p class="step-desc">Identifica detalles visuales: un cuadro, una planta, una mancha en la pared, etc.</p>
+                                <div class="input-group">
+                                    <input type="text" placeholder="1. Veo..." class="grounding-input">
+                                    <input type="text" placeholder="2. Veo..." class="grounding-input">
+                                    <input type="text" placeholder="3. Veo..." class="grounding-input">
+                                    <input type="text" placeholder="4. Veo..." class="grounding-input">
+                                    <input type="text" placeholder="5. Veo..." class="grounding-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grounding-step" data-step="2">
+                                <h4><span class="step-num">4</span> Cosas que puedes TOCAR o SENTIR</h4>
+                                <p class="step-desc">Siente las texturas: tu ropa, la brisa en tu piel, el peso de tu cuerpo en la silla.</p>
+                                <div class="input-group">
+                                    <input type="text" placeholder="1. Siento..." class="grounding-input">
+                                    <input type="text" placeholder="2. Siento..." class="grounding-input">
+                                    <input type="text" placeholder="3. Siento..." class="grounding-input">
+                                    <input type="text" placeholder="4. Siento..." class="grounding-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grounding-step" data-step="3">
+                                <h4><span class="step-num">3</span> Cosas que puedes ESCUCHAR</h4>
+                                <p class="step-desc">Presta atención a sonidos lejanos o cercanos: el viento, el tráfico, la nevera.</p>
+                                <div class="input-group">
+                                    <input type="text" placeholder="1. Escucho..." class="grounding-input">
+                                    <input type="text" placeholder="2. Escucho..." class="grounding-input">
+                                    <input type="text" placeholder="3. Escucho..." class="grounding-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grounding-step" data-step="4">
+                                <h4><span class="step-num">2</span> Cosas que puedes OLER</h4>
+                                <p class="step-desc">Busca olores en el aire, o huele tu propia manga, jabón o café.</p>
+                                <div class="input-group">
+                                    <input type="text" placeholder="1. Huelo..." class="grounding-input">
+                                    <input type="text" placeholder="2. Huelo..." class="grounding-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grounding-step" data-step="5">
+                                <h4><span class="step-num">1</span> Cosa que puedes SABOREAR</h4>
+                                <p class="step-desc">Un chicle, el sabor residual de tu pasta de dientes o traga saliva conscientemente.</p>
+                                <div class="input-group">
+                                    <input type="text" placeholder="1. Saboreo..." class="grounding-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grounding-step" data-step="result">
+                                <div class="grounding-completed-animation">
+                                    <i class="fa-solid fa-circle-check completed-icon"></i>
+                                    <h4>Técnica Completada</h4>
+                                    <p>Has prestado atención plena a tu entorno físico. Respira hondo y siente cómo tu cuerpo se asienta de nuevo en el presente.</p>
+                                    <button class="btn btn-primary" id="btn-grounding-restart">Reiniciar Técnica</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Wizard Controls -->
+                            <div class="grounding-controls">
+                                <button class="btn btn-secondary hidden" id="btn-grounding-prev">Anterior</button>
+                                <button class="btn btn-primary" id="btn-grounding-next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sub-tab-content" id="habits">
+                    <div class="habits-card glass">
+                        <div class="habits-header">
+                            <div>
+                                <h3>Micro-Hábitos de Bienestar TCC</h3>
+                                <p>Hábitos sencillos y diarios validados clínicamente para modular tus estados de ansiedad y depresión.</p>
+                            </div>
+                            <div class="habits-progress-bar-container">
+                                <div class="habits-percentage" id="habits-card-percent">0%</div>
+                                <div class="habits-bar-outer">
+                                    <div class="habits-bar-inner" id="habits-card-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="habits-list">
+                            <label class="habit-item">
+                                <input type="checkbox" class="habit-checkbox" data-habit-id="h1">
+                                <span class="custom-checkbox"></span>
+                                <div class="habit-text">
+                                    <strong>Higiene de Sueño (7-8 hrs)</strong>
+                                    <span>Ir a dormir a la misma hora, apagando pantallas 30 mins antes.</span>
+                                </div>
+                            </label>
+                            
+                            <label class="habit-item">
+                                <input type="checkbox" class="habit-checkbox" data-habit-id="h2">
+                                <span class="custom-checkbox"></span>
+                                <div class="habit-text">
+                                    <strong>Estiramiento o Yoga Matutino (10 min)</strong>
+                                    <span>Activa tu cuerpo y libera rigidez física al despertar.</span>
+                                </div>
+                            </label>
+                            
+                            <label class="habit-item">
+                                <input type="checkbox" class="habit-checkbox" data-habit-id="h3">
+                                <span class="custom-checkbox"></span>
+                                <div class="habit-text">
+                                    <strong>Registro de Pensamientos TCC</strong>
+                                    <span>Anota un pensamiento disfuncional del día y busca una alternativa objetiva.</span>
+                                </div>
+                            </label>
+                            
+                            <label class="habit-item">
+                                <input type="checkbox" class="habit-checkbox" data-habit-id="h4">
+                                <span class="custom-checkbox"></span>
+                                <div class="habit-text">
+                                    <strong>Paseo al Aire Libre (15 min)</strong>
+                                    <span>Permite que la luz solar y el aire fresco regulen tus ritmos circadianos.</span>
+                                </div>
+                            </label>
+                            
+                            <label class="habit-item">
+                                <input type="checkbox" class="habit-checkbox" data-habit-id="h5">
+                                <span class="custom-checkbox"></span>
+                                <div class="habit-text">
+                                    <strong>Diario de Gratitud</strong>
+                                    <span>Escribe 3 cosas por las que estés agradecido el día de hoy.</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <button class="btn btn-secondary btn-sm" id="btn-habits-reset">Restablecer Todo</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Biblioteca Section -->
+            <section id="biblioteca" class="tab-content">
+                <header class="section-header">
+                    <h1>Biblioteca Práctica y Recursos</h1>
+                    <p class="section-subtitle">Material descargable e infografías clínicas sobre salud mental y bienestar.</p>
+                </header>
+                
+                <div class="resources-container">
+                    
+                    <div class="resources-section">
+                        <h2>Fichas de Autoayuda (Descargables)</h2>
+                        <div class="resources-grid">
+                            <div class="resource-card glass">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info-block">
+                                    <h4>Guía Práctica de Gestión de la Ansiedad</h4>
+                                    <p>Herramientas y técnicas para regular el pánico y la ansiedad generalizada.</p>
+                                    <button class="btn btn-outline btn-sm" onclick="downloadResource('guia-ansiedad')">
+                                        Descargar Guía <i class="fa-solid fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card glass">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info-block">
+                                    <h4>Pauta de Higiene del Sueño</h4>
+                                    <p>Recomendaciones clínicas para combatir el insomnio de forma progresiva.</p>
+                                    <button class="btn btn-outline btn-sm" onclick="downloadResource('higiene-sueno')">
+                                        Descargar Guía <i class="fa-solid fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card glass">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info-block">
+                                    <h4>Plantilla de Registro Diario de Pensamientos</h4>
+                                    <p>Estructura paso a paso de TCC para deconstruir creencias automáticas negativas.</p>
+                                    <button class="btn btn-outline btn-sm" onclick="downloadResource('registro-tcc')">
+                                        Descargar Guía <i class="fa-solid fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resources-section">
+                        <h2>Librería Recomendada</h2>
+                        <p class="section-desc">Selección de lecturas de divulgación científica en psicología validadas clínicamente.</p>
+                        <div class="books-grid">
+                            <div class="book-card glass">
+                                <div class="book-cover">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <div class="book-details">
+                                    <h4>El Sentido de la Vida</h4>
+                                    <span class="book-author">Viktor E. Frankl</span>
+                                    <p>Una exploración profunda sobre la logoterapia y cómo encontrar significado ante la adversidad extrema.</p>
+                                    <a href="https://amzn.to/example-sentido-vida" target="_blank" class="book-link">
+                                        Ver en Amazon <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="book-card glass">
+                                <div class="book-cover">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <div class="book-details">
+                                    <h4>Sentirse Bien</h4>
+                                    <span class="book-author">David D. Burns</span>
+                                    <p>La biblia de autoayuda basada en Terapia Cognitivo Conductual para superar el sesgo cognitivo depresivo.</p>
+                                    <a href="https://amzn.to/example-sentirse-bien" target="_blank" class="book-link">
+                                        Ver en Amazon <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Directorio Section -->
+            <section id="directorio" class="tab-content">
+                <header class="section-header">
+                    <h1>Directorio de Profesionales</h1>
+                    <p class="section-subtitle">Encuentra psicólogos, terapeutas y coaches disponibles para sesiones clínicas.</p>
+                </header>
+                
+                <div class="directory-filter-bar glass">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="directory-search" placeholder="Buscar por nombre o especialidad...">
+                    </div>
+                    
+                    <div class="filters-wrapper">
+                        <select id="specialty-filter">
+                            <option value="">Todas las Especialidades</option>
+                            <option value="Terapia Cognitivo Conductual">Terapia Cognitivo Conductual</option>
+                            <option value="Ansiedad y Depresión">Ansiedad y Depresión</option>
+                            <option value="Terapia de Aceptación y Compromiso">Terapia de Aceptación (ACT)</option>
+                            <option value="Mindfulness y Estrés">Mindfulness y Estrés</option>
+                            <option value="Psicología Clínica Juvenil">Clínica Juvenil</option>
+                        </select>
+                        
+                        <label class="filter-checkbox-label">
+                            <input type="checkbox" id="volunteer-filter">
+                            <span>Solo Voluntarios</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="directory-grid" id="directory-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+            
+        </main>
+        
+    </div>
+
+    <!-- Hidden Printer Container for Guides -->
+    <div id="print-template" style="display: none;">
+        <div class="print-container">
+            <h1 id="print-title"></h1>
+            <div id="print-content"></div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
