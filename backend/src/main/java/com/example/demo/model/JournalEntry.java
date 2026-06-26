@@ -34,7 +34,7 @@ public class JournalEntry {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_privacidad", nullable = false)
-    private PrivacyStatus estadoPrivacidad = PrivacyStatus.privado;
+    private PrivacyStatus estadoPrivacidad = PrivacyStatus.PRIVATE;
 
     @Column(name = "acceso_profesionales", columnDefinition = "TEXT")
     private String accesoProfesionales; 

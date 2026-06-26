@@ -40,11 +40,11 @@ public class SessionReservation {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_sesion", nullable = false)
-    private SessionType tipoSesion = SessionType.online;
+    private SessionType tipoSesion = SessionType.ONLINE;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private SessionStatus estado = SessionStatus.pendiente;
+    private SessionStatus estado = SessionStatus.PENDING;
 
     @Column(name = "monto_pagado", precision = 10, scale = 2)
     private BigDecimal montoPagado;

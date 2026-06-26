@@ -1,4 +1,4 @@
-    package com.example.demo.model;
+package com.example.demo.model;
 
 import com.example.demo.model.enums.Gender;
 import com.example.demo.model.enums.UserStatus;
@@ -46,7 +46,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "genero")
-    private Gender genero = Gender.prefiero_no_decir;
+    private Gender genero = Gender.PREFER_NOT_TO_SAY;
 
     @Column(name = "estado_civil")
     private String estadoCivil;
@@ -63,7 +63,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserStatus estado = UserStatus.activo;
+    private UserStatus estado = UserStatus.ACTIVE;
 
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDateTime fechaCreacion = LocalDateTime.now();

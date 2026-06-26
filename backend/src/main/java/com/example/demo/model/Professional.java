@@ -55,7 +55,7 @@ public class Professional {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ProfessionalStatus estado = ProfessionalStatus.activo;
+    private ProfessionalStatus estado = ProfessionalStatus.ACTIVE;
 
     @Column(name = "fecha_registro", nullable = false, updatable = false)
     private LocalDateTime fechaRegistro = LocalDateTime.now();
