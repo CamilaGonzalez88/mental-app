@@ -1,4 +1,4 @@
-# 🧠 Mente Conecta — Plataforma Práctica de Salud Mental
+# 🧠 Abraza Mente — Plataforma Práctica de Salud Mental
 
 Este repositorio contiene la arquitectura, el código fuente y el flujo de integración de la **Plataforma Práctica de Salud Mental (Mente Conecta)**, un sistema ágil y psicoeducativo orientado a la autogestión de la salud mental y la colaboración con profesionales clínicos.
 
