@@ -1,4 +1,4 @@
-// src/main/resources/static/src/js/main.js
+// src/main/resources/static/src/js/main.js - Entry point for frontend
 import { initThemeToggle } from './theme.js';
 import { initUIEffects } from './ui.js';
 import { initFAQ } from './faq.js';
