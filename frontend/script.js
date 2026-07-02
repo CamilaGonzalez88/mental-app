@@ -1,3 +1,32 @@
+let dbConnection = null;
+
+async function getDbConnection() {
+  if (dbConnection) return dbConnection;
+
+  if (typeof window !== "undefined") {
+    console.warn("La conexión a MySQL está preparada para uso en Node.js y no se ejecuta desde el navegador.");
+    return null;
+  }
+
+  const mysql = (await import("mysql2/promise")).default;
+  dbConnection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "DiscordConPan12/",
+    database: "menteconecta"
+  });
+
+  return dbConnection;
+}
+
+getDbConnection().catch((error) => {
+  console.error("No se pudo conectar a la base de datos:", error);
+});
+
+if (typeof window !== "undefined") {
+  window.getDbConnection = getDbConnection;
+}
+
 // --- GESTIÓN DE TEMA (MODO OSCURO) ---
 function initThemeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
