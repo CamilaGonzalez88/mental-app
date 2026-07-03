@@ -82,25 +82,31 @@ mental-app/
 ├── .github/
 │   └── workflows/
 │       ├── codeql.yml            # Análisis estático de seguridad de código
-│       └── maven.yml              # CI de compilación y pruebas para Java
-├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/example/demo/
-│   │   │   │   ├── controller/   # Controladores de la API REST
-│   │   │   │   ├── model/        # Entidades JPA (User, Task, etc.)
-│   │   │   │   ├── repository/   # Interfaces Spring Data JPA
-│   │   │   │   └── service/      # Lógica de servicio y negocio
-│   │   │   └── resources/
-│   │   │       └── application.properties  # Configuración (H2/MySQL)
-│   │   └── test/                 # Pruebas unitarias de Spring Boot
-│   └── pom.xml                   # Configuración del proyecto Maven
+│       ├── maven.yml             # CI de compilación y pruebas para Java
+│       ├── neon-branches.yml     # Gestión de ramas de base de datos Neon
+│       └── sourcery.yml          # Integración con Sourcery AI para PRs
+├── bruno/                        # Colecciones de pruebas de API con Bruno
 ├── database/
 │   └── database.sql              # Esquema SQL original de la base de datos
-├── index.html                    # Frontend estático original
-├── style.css                     # Estilos generales del MVP estático
-├── script/
-│   └── script.js                 # Lógica interactiva original en Vanilla JS
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/demo/
+│   │   │   ├── controller/       # Controladores de la API REST
+│   │   │   ├── dto/              # Objetos de Transferencia de Datos (DTO)
+│   │   │   ├── exception/        # Manejador global de excepciones
+│   │   │   ├── mapper/           # Mapeadores de entidades a DTOs
+│   │   │   ├── model/            # Entidades JPA (User, Professional, etc.)
+│   │   │   ├── repository/       # Interfaces Spring Data JPA
+│   │   │   └── service/          # Lógica de servicio y negocio
+│   │   └── resources/
+│   │       ├── static/           # Archivos estáticos del Frontend
+│   │       │   ├── public/       # index.html principal del Frontend
+│   │       │   └── src/          # Estilos, scripts y componentes comunes
+│   │       ├── application.yml   # Configuración de base de datos y entorno
+│   │       └── ...
+│   └── test/                     # Pruebas de integración del Backend
+├── .env                          # Variables de entorno locales
+├── pom.xml                       # Configuración de compilación Maven (raíz)
 ├── LICENSE                       # Licencia GPLv3
 └── README.md                     # Documentación principal del repositorio
 ```
@@ -111,27 +117,17 @@ mental-app/
 
 ### Prerrequisitos
 - **Java JDK 17** o superior instalado en el equipo.
-- **Node.js** y npm (para el desarrollo con React).
 
-### Backend (Spring Boot)
-1. Navega al directorio del backend:
-   ```bash
-   cd backend
-   ```
-2. Ejecuta la aplicación utilizando Maven (el archivo utiliza base de datos H2 en memoria por defecto):
+### Ejecución (Spring Boot)
+1. Ejecuta la aplicación utilizando Maven directamente desde la raíz del proyecto (el archivo utiliza base de datos H2 en memoria por defecto):
    ```bash
    mvn spring-boot:run
    ```
-3. La API estará disponible en `http://localhost:8080`.
-4. La consola H2 interactiva se encuentra en `http://localhost:8080/h2-console` (Credenciales: URL: `jdbc:h2:mem:taskdb`, Usuario: `sa`, sin contraseña).
+2. La API estará disponible en `http://localhost:8080`.
+3. La consola H2 interactiva se encuentra en `http://localhost:8080/h2-console` (Credenciales: URL: `jdbc:h2:mem:taskdb`, Usuario: `sa`, sin contraseña).
 
-### Configuración de MySQL
-Para conectar la aplicación a un servidor MySQL real, edita el archivo `backend/src/main/resources/application.properties` para descomentar las propiedades correspondientes:
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/mente_conecta_db?useSSL=false&serverTimezone=UTC
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_contraseña
-```
+### Configuración de Base de Datos
+Para conectar la aplicación a un servidor Neon PostgreSQL real, edita el archivo `src/main/resources/application.yml` o bien crea un archivo `.env` en la raíz del proyecto basándote en la plantilla correspondiente.
 
 ---
 

@@ -1,5 +1,0 @@
-DB_URL=jdbc:postgresql://ep-morning-smoke-atxbo2u1-pooler.c-9.us-east-1.aws.neon.tech/neondb?sslmode=require
-DB_USER=neondb_owner
-DB_PASSWORD=npg_Io9ZCKABg7id
-DB_DRIVER=org.postgresql.Driver
-
