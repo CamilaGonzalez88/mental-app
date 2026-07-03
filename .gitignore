@@ -51,4 +51,4 @@ buildNumber.properties
 .DS_Store
 
 # Draw background
-img/draw
+/src/main/resources/static/src/assets/images/Draw
