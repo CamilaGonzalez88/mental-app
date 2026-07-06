@@ -26,10 +26,9 @@
    PAGE
 ========================================================== */
 
-body{
-
-    overflow-x:hidden;
-
+body {
+    overflow-x: hidden; /* Mantiene limpio el desborde horizontal */
+    overflow-y: auto;   /* Fuerza a que el scroll vertical aparezca solo si es necesario */
 }
 
 /* ==========================================================
@@ -118,28 +117,16 @@ body{
    MAIN
 ========================================================== */
 
-.login{
-
-    width:min(1600px,94%);
-
-    min-height:100vh;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-
-        minmax(650px,1fr)
-
-        var(--login-width);
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:120px;
-
+.login {
+    width: min(1000px, 94%);
+    min-height: 100vh;
+    margin: auto;
+    display: grid;
+    /* Estructura por defecto para pantallas grandes (Escritorio) */
+    grid-template-columns: minmax(540px, 2fr) var(--login-width);
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
 }
 
 /* ==========================================================
@@ -284,68 +271,30 @@ body{
    ILUSTRACIÓN
 ========================================================== */
 
-.hero__illustration{
+/* ==========================================================
+   ILUSTRACIÓN
+========================================================== */
 
-    position:relative;
-
-    width:520px;
-
-    height:420px;
-
-    margin-top:70px;
-
+.hero__illustration {
+    position: relative;
+    width: 520px;
+    height: 420px;
+    margin-top: 70px;
 }
 
 /* núcleo */
-
-.mind-core{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    transform:
-
-        translate(-50%,-50%);
-
-    width:150px;
-
-    height:150px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #5B8DEF,
-
-            #8B7CF8
-
-        );
-
-    box-shadow:
-
-        0 35px 80px rgba(91,141,239,.35);
-
-}
-
-.mind-heart{
-
-    color:white;
-
-    font-size:2.6rem;
-
+.mind-core {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background-image: var(--img-hero-illustration);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.35s ease;
 }
 
 /* ==========================================================
@@ -1017,4 +966,66 @@ html[data-theme="dark"] .login-card{
 
     }
 
+}
+
+#div-hero{
+    border: solid;
+    border-color: black;
+}
+
+/* ==========================================================
+   RESPONSIVE (MEDIA QUERIES)
+========================================================== */
+
+@media (max-width: 1024px) {
+    .login {
+        /* 1. Cambiamos a una sola columna */
+        grid-template-columns: 1fr;
+        
+        /* 2. Forzamos el alto total de la ventana */
+        min-height: 100vh; 
+        
+        /* 3. Forzamos a que el contenedor y sus hijos se alineen al centro horizontal */
+        justify-content: center;
+        justify-items: center; 
+        
+        /* 4. Centramos verticalmente todo el bloque (Hero + Card) */
+        align-content: center;
+        
+        /* 5. Anulamos el alineamiento por celda de escritorio */
+        align-items: stretch; 
+        
+        /* 6. Espaciado y márgenes de seguridad para móviles */
+        gap: 40px;
+        padding: 60px 0; 
+    }
+
+    .hero {
+        text-align: center;
+        width: 100%;
+        max-width: var(--hero-max-width);
+    }
+
+    .hero__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero__description {
+        margin-inline: auto;
+    }
+
+    .hero__illustration {
+        display: none; 
+    }
+
+    .login-card {
+        /* Fuerza a la tarjeta a posicionarse en el centro de la columna única */
+        justify-self: center; 
+        
+        width: 100%;
+        max-width: var(--login-width); 
+    }
 }
