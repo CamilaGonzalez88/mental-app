@@ -59,57 +59,50 @@ body{
 
     --transition:.30s ease;
 
+    --img-hero-illustration: url("/src/main/resources/static/src/assets/images/picture-login-light.png");
+
 }
 
 
 
 /* ==========================================================
-   BODY
+   BODY & THEMES
 ========================================================== */
 
-body{
-
-    position: fixed;
-
-    background-image: url("../assets/images/background-login-light.png");
-
-    background-size: cover;
-
-    background-repeat: no-repeat;
-
-    background-position: center;
-
-    background-attachment: fixed;
-
-    background-color: #0b0d10;
-
+body {
+    min-height: 100vh; /* Cambiado de position: fixed a min-height */
     margin: 0;
-
     padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background-image 0.35s ease, background-color 0.35s ease;
 }
 
-html[data-theme="dark"]{
+/* Modo Claro (Por defecto) */
+html[data-theme="light"] body {
+    background-image: url("/src/main/resources/static/src/assets/images/background-login-light.png");
+    background-color: #f5f7fb;
+}
 
-    --color-background:#0f172a;
+/* Modo Oscuro */
+html[data-theme="dark"] {
+    --color-background: #0f172a;
+    --color-surface: rgba(22, 28, 45, .72);
+    --color-title: #ffffff;
+    --color-text: #b7c1d4;
+    --color-primary: #6d96ff;
+    --color-primary-hover: #83a6ff;
+    --color-border: #30384d;
+    --color-input: #182133;
+    --shadow-lg: 0 30px 60px rgba(0, 0, 0, .45);
+    --img-hero-illustration: url("/src/main/resources/static/src/assets/images/picture-login-dark.png");
+}
 
-    --color-surface:
-        rgba(22,28,45,.72);
-
-    --color-title:#ffffff;
-
-    --color-text:#b7c1d4;
-
-    --color-primary:#6d96ff;
-
-    --color-primary-hover:#83a6ff;
-
-    --color-border:#30384d;
-
-    --color-input:#182133;
-
-    --shadow-lg:
-        0 30px 60px rgba(0,0,0,.45);
-
+html[data-theme="dark"] body {
+    background-image: url("/src/main/resources/static/src/assets/images/background-login-dark.png");
+    background-color: #0f172a;
 }
 
 /* ==========================================================
