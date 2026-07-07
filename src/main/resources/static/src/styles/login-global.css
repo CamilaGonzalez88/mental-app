@@ -292,3 +292,9 @@ button{
     font:inherit;
 
 }
+
+html[data-theme="dark"] body{
+
+    background-image: url("../assets/images/background-login-dark.png");
+
+}

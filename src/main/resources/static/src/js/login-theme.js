@@ -1,7 +1,7 @@
 /**
  * ==========================================================
  * AbrazaMente
- * Theme Manager
+ * Login Theme + Google Auth
  * ==========================================================
  */
 
@@ -19,14 +19,9 @@ class ThemeManager {
 
     }
 
-    /**
-     * Inicializa el gestor de tema
-     */
     init() {
 
         if (!this.button) {
-
-            console.warn("Theme Toggle no encontrado.");
 
             return;
 
@@ -41,18 +36,12 @@ class ThemeManager {
 
     }
 
-    /**
-     * Obtiene el tema almacenado
-     */
     getSavedTheme() {
 
         return localStorage.getItem(this.storageKey);
 
     }
 
-    /**
-     * Guarda el tema
-     */
     saveTheme(theme) {
 
         localStorage.setItem(
@@ -62,9 +51,6 @@ class ThemeManager {
 
     }
 
-    /**
-     * Detecta el tema del sistema
-     */
     getSystemTheme() {
 
         return window.matchMedia(
@@ -75,9 +61,6 @@ class ThemeManager {
 
     }
 
-    /**
-     * Aplica el tema al documento
-     */
     applyTheme(theme) {
 
         this.html.setAttribute(
@@ -87,9 +70,6 @@ class ThemeManager {
 
     }
 
-    /**
-     * Carga el tema
-     */
     loadTheme() {
 
         const theme =
@@ -103,9 +83,6 @@ class ThemeManager {
 
     }
 
-    /**
-     * Cambia el tema
-     */
     toggleTheme() {
 
         const current =
