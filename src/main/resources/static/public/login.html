@@ -272,12 +272,21 @@
             <div class="social">
 
                 <button
-                    class="button button--secondary"
-                    type="button">
+                    id="google-login-button"
+                    class="button button--google"
+                    type="button"
+                    aria-label="Continuar con Google">
 
-                    Google
+                    <span class="button--google__icon" aria-hidden="true">G</span>
+                    <span>Continuar con Google</span>
 
                 </button>
+
+                <div
+                    id="google-signin-native"
+                    class="google-signin-native"
+                    aria-hidden="true">
+                </div>
 
             </div>
 
@@ -305,7 +314,8 @@
 
     </main>
 
-    <script src="/src/main/resources/static/src/js/login-theme.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/src/main/resources/static/src/js/login-theme.js" defer></script>
 
 </body>
 
